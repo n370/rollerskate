@@ -1,0 +1,40 @@
+{
+  "name": "rollerskate",
+  "version": "1.0.0",
+  "description": "A rolled up accordion library.",
+  "main": "./dist/accordion.js",
+  "scripts": {
+    "pretest": "npm run build:test",
+    "test": "tap test/**/*.spec.js",
+    "prepare": "npm run build:js",
+    "start": "npm-run-all --serial test --parallel watch:*",
+    "build:test": "babel src/**/*.js --out-dir test",
+    "watch:test": "onchange \"src/**/*.js\" -w -- npm test",
+    "build:js": "rollup -c",
+    "watch:js": "npm run build:js -- -w"
+  },
+  "author": "Dylson Valente Neto <ama@n370.info>",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "jsdom": "^9.12.0",
+    "npm-run-all": "^4.0.2",
+    "onchange": "^3.2.1",
+    "rollup": "^0.41.6",
+    "rollup-watch": "^3.2.2",
+    "tap": "^10.3.0"
+  }
+}
