@@ -2,6 +2,7 @@
   "name": "rollerskate",
   "version": "1.0.0",
   "description": "A rolled up accordion library.",
+  "repository": "n370/rollerskate",
   "main": "./dist/accordion.js",
   "scripts": {
     "pretest": "npm run build:test",
