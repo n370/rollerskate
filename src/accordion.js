@@ -1,6 +1,12 @@
 export default class Accordion {
-  constructor (container) {
-    this.container = container;
+  constructor (window) {
+    const container = window.document.querySelector('[data-accordion]');
+    if (container) {
+      this.container = container;
+    } else {
+      throw new Error('Can\'t find data-accordion element.');
+    }
+    this.initialize();
   }
 
   children() {
@@ -9,18 +15,18 @@ export default class Accordion {
 
   initialize() {
     [].forEach.call(this.container.children, (child) => {
-      if (!child.hasAttribute('closed') && !child.hasAttribute('open')) {
-        this.closeItem(child);
+      if (!child.hasAttribute('data-accordion-closed') && !child.hasAttribute('data-accordion-open')) {
+        this.collapse(child);
       }
     });
   }
 
-  closeItem(item) {
+  collapse(item) {
     const itemBody = item.querySelector('*[data-accordion-item-body]');
-    if (!item.hasAttribute('closed')) {
-      item.setAttribute('closed', true);
-      if (item.hasAttribute('open')) {
-        item.removeAttribute('open');
+    if (!item.hasAttribute('data-accordion-closed')) {
+      item.setAttribute('data-accordion-closed', true);
+      if (item.hasAttribute('data-accordion-open')) {
+        item.removeAttribute('data-accordion-open');
       }
       if (itemBody) {
         itemBody.style.display = 'none';
@@ -28,12 +34,12 @@ export default class Accordion {
     }
   }
 
-  openItem(item) {
+  expand(item) {
     const itemBody = item.querySelector('*[data-accordion-item-body]');
-    if (!item.hasAttribute('open')) {
-      item.setAttribute('open', true);
-      if (item.hasAttribute('closed')) {
-        item.removeAttribute('closed');
+    if (!item.hasAttribute('data-accordion-open')) {
+      item.setAttribute('data-accordion-open', true);
+      if (item.hasAttribute('data-accordion-closed')) {
+        item.removeAttribute('data-accordion-closed');
       }
       if (itemBody) {
         itemBody.style.display = null;
