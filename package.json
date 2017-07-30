@@ -17,6 +17,7 @@
   "author": "Dylson Valente Neto <ama@n370.info>",
   "license": "MIT",
   "babel": {
+    "sourceMaps": "inline",
     "presets": [
       [
         "env",
