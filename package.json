@@ -6,7 +6,7 @@
   "main": "./dist/accordion.js",
   "scripts": {
     "pretest": "npm run build:test",
-    "test": "tap test/**/*.spec.js",
+    "test": "tap --bail test/**/*.spec.js",
     "prepare": "npm run build:js",
     "start": "npm-run-all --serial test watch:test",
     "build:test": "babel src/**/*.js --out-dir test",
