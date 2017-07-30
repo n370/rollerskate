@@ -8,7 +8,7 @@
     "pretest": "npm run build:test",
     "test": "tap test/**/*.spec.js",
     "prepare": "npm run build:js",
-    "start": "npm-run-all --serial test --parallel watch:*",
+    "start": "npm-run-all --serial test watch:test",
     "build:test": "babel src/**/*.js --out-dir test",
     "watch:test": "onchange \"src/**/*.js\" -w -- npm test",
     "build:js": "rollup -c",
