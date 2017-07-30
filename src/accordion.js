@@ -1,49 +1,24 @@
+import AccordionItem from './lib/accordion-item.js';
+
 export default class Accordion {
   constructor (window) {
-    const container = window.document.querySelector('[data-accordion]');
-    if (container) {
-      this.container = container;
+    const element = window.document.querySelector('[data-accordion]');
+    if (element) {
+      this.items = [].map.call(element.children, child => new AccordionItem(child));
     } else {
       throw new Error('Can\'t find data-accordion element.');
     }
-    this.initialize();
   }
 
-  children() {
-    return this.container.children;
+  item(index) {
+    return this.items[index];
   }
 
-  initialize() {
-    [].forEach.call(this.container.children, (child) => {
-      if (!child.hasAttribute('data-accordion-closed') && !child.hasAttribute('data-accordion-open')) {
-        this.collapse(child);
-      }
-    });
+  collapseAll() {
+    [].forEach.call(this.items, item => item.collapse());
   }
 
-  collapse(item) {
-    const itemBody = item.querySelector('*[data-accordion-item-body]');
-    if (!item.hasAttribute('data-accordion-closed')) {
-      item.setAttribute('data-accordion-closed', true);
-      if (item.hasAttribute('data-accordion-open')) {
-        item.removeAttribute('data-accordion-open');
-      }
-      if (itemBody) {
-        itemBody.style.display = 'none';
-      }
-    }
-  }
-
-  expand(item) {
-    const itemBody = item.querySelector('*[data-accordion-item-body]');
-    if (!item.hasAttribute('data-accordion-open')) {
-      item.setAttribute('data-accordion-open', true);
-      if (item.hasAttribute('data-accordion-closed')) {
-        item.removeAttribute('data-accordion-closed');
-      }
-      if (itemBody) {
-        itemBody.style.display = null;
-      }
-    }
+  expandAll() {
+    [].forEach.call(this.items, item => item.expand());
   }
 }
