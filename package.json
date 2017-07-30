@@ -1,6 +1,6 @@
 {
   "name": "rollerskate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A rolled up accordion library.",
   "repository": "n370/rollerskate",
   "main": "./dist/accordion.js",
